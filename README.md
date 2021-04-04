@@ -30,3 +30,23 @@ func main() {
 	fmt.Println(comments)
 }
 ```
+With a new comment continuation callback
+```go
+package main
+
+import (
+	"fmt"
+	"github.com/luispmenezes/youtube-comments/pkg/youtubeComments"
+	"github.com/luispmenezes/youtube-comments/pkg/youtubeComments/model"
+)
+
+func main() {
+	client := youtubeComments.NewYoutubeCommentsClient()
+	client.RegisterCommentCallback(onNewComments)
+	client.GetComments("1hgzRK-9J_A")
+}
+
+func onNewComments(comments []model.Comment)  {
+	fmt.Println(comments)
+}
+```

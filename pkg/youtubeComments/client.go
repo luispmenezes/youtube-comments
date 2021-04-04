@@ -17,8 +17,9 @@ import (
 )
 
 type YoutubeCommentsClient struct {
-	jar        *cookiejar.Jar
-	httpClient *http.Client
+	jar             *cookiejar.Jar
+	httpClient      *http.Client
+	commentCallback CommentCallback
 }
 
 func NewYoutubeCommentsClient() *YoutubeCommentsClient {
@@ -87,6 +88,10 @@ func (yc *YoutubeCommentsClient) GetComments(videoId string) ([]model.Comment, e
 	}
 }
 
+func (yc *YoutubeCommentsClient) RegisterCommentCallback(callback CommentCallback) {
+	yc.commentCallback = callback
+}
+
 func (yc *YoutubeCommentsClient) doCommentsRequest(sessionToken, clickTracking, continuation, action string) ([]model.Comment, error) {
 	log.WithFields(log.Fields{"sessionToken": sessionToken, "clickTracking": clickTracking,
 		"continuation": continuation, "action": action}).
@@ -137,6 +142,10 @@ func (yc *YoutubeCommentsClient) doCommentsRequest(sessionToken, clickTracking, 
 				comment.Replies = append(comment.Replies, replies...)
 			}
 			commentList = append(commentList, comment)
+		}
+
+		if len(commentList) > 0 && yc.commentCallback != nil {
+			yc.commentCallback(commentList)
 		}
 
 		for _, c := range response.ContinuationContents.ItemSectionContinuation.Continuations {
