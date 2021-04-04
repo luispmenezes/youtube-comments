@@ -1,12 +1,12 @@
 package youtubeComments
 
 import (
+	"github.com/luispmenezes/youtube-comments/pkg/youtubeComments/external"
+	"github.com/luispmenezes/youtube-comments/pkg/youtubeComments/model"
 	log "github.com/sirupsen/logrus"
 	"strconv"
 	"strings"
 	"time"
-	"youtube-comments/pkg/youtubeComments/external"
-	"youtube-comments/pkg/youtubeComments/model"
 )
 
 func findInHtmlString(htmlStr string, key string, offset int, delimiter string) string {

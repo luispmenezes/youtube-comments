@@ -1,4 +1,4 @@
-module youtube-comments
+module github.com/luispmenezes/youtube-comments
 
 go 1.15
 

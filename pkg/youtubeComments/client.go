@@ -3,6 +3,8 @@ package youtubeComments
 import (
 	"encoding/json"
 	"fmt"
+	"github.com/luispmenezes/youtube-comments/pkg/youtubeComments/external"
+	"github.com/luispmenezes/youtube-comments/pkg/youtubeComments/model"
 	"github.com/pkg/errors"
 	log "github.com/sirupsen/logrus"
 	"io"
@@ -12,8 +14,6 @@ import (
 	"net/url"
 	"strconv"
 	"strings"
-	"youtube-comments/pkg/youtubeComments/external"
-	"youtube-comments/pkg/youtubeComments/model"
 )
 
 type YoutubeCommentsClient struct {
