@@ -12,6 +12,9 @@ Get comments from Youtube videos without using the API.
 ```
 
 ### Lib
+```
+go get github.com/luispmenezes/youtube-comments
+```
 
 ```go
 package main

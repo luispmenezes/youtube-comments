@@ -4,9 +4,9 @@ import (
 	"encoding/json"
 	"flag"
 	"fmt"
+	"github.com/luispmenezes/youtube-comments/pkg/youtubeComments"
 	"io/ioutil"
 	"os"
-	"youtube-comments/pkg/youtubeComments"
 )
 
 func main() {
